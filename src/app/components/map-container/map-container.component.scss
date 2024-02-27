@@ -1,0 +1,16 @@
+.map-container {
+  width: calc(100% * 10 / 12);
+  height: calc(100% * 10 / 12);
+  position: relative;
+  top: calc(100% / 8);
+  left: calc(100% / 8);
+
+  .map {
+    width: 101%;
+    height: 101%;
+    position: relative;
+    top: -.25%;
+    left: -.25%;
+    background-image: url('/assets/svg/map.svg');
+  }
+}
