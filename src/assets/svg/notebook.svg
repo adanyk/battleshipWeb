@@ -1,6 +1,6 @@
 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <pattern id="grid" width="8.33333333%" height="8.33333333%" patternUnits="objectBoundingBox" x="4.16666667%" y="4.16666667%">
+    <pattern id="grid" width="8.33333333%" height="8.33333333%" patternUnits="objectBoundingBox" x="3.91666667%" y="3.91666667%">
       <path d="M 0,0 L 0,1000" stroke="#ccc" stroke-width="1%" />
       <path d="M 0,0 L 1000,0" stroke="#ccc" stroke-width="1%" />
     </pattern>
