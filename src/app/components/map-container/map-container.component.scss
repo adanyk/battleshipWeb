@@ -1,9 +1,10 @@
-.map-container {
+:host {
   width: calc(101% * 10 / 12);
   height: calc(101% * 10 / 12);
   position: relative;
   top: calc(100% / 8);
   left: calc(100% / 8);
+  display: block;
 
   .row-markings, .column-markings {
     position: absolute;
