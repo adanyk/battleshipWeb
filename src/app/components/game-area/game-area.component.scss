@@ -1,19 +1,13 @@
-.game-area {
+:host {
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  .player-field {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  gap: 6px;
   
   .divider {
-    width: 2px;
+    width: 4px;
     background-color: black;
     align-self: stretch;
+    min-width: 4px;
   }
 }

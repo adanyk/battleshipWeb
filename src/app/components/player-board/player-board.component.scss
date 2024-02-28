@@ -1,5 +1,5 @@
-.player-board {
-  height: 80vh; // Use viewport height to fill the screen
+:host {
+  height: 80vh;
   width: 40vh;
   flex-direction: column;
 }
