@@ -13,4 +13,39 @@
     left: -.5%;
     background-image: url('/assets/svg/map.svg');
   }
+
+  .row-markings, .column-markings {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      font-size: 2vh;
+      justify-content: center;
+    }
+  }
+
+  .row-markings {
+    flex-direction: column;
+    height: 100%;
+    left: -7%;
+
+    div {
+      height: calc(100% / 10);
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .column-markings {
+    flex-direction: row;
+    width: 100%;
+    top: -7%;
+
+    div {
+      width: calc(100% / 10);
+      text-align: center;
+    }
+  }
 }
