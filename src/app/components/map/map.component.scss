@@ -6,4 +6,12 @@
   left: -.5%;
   background-image: url('/assets/svg/map.svg');
   display: block;
+
+  div {
+    width: 99%;
+    height: 99%;
+    position: relative;
+    top: .5%;
+    left: .5%;
+  }
 }
