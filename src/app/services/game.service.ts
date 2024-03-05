@@ -14,15 +14,14 @@ export class GameService {
     this.fleets.set(key, new BehaviorSubject<ShipPosition[]>([]));
   }
 
-  getFleetObservable(playerName: string, notebookType: string): Observable<ShipPosition[]> {
-    const key = `${playerName}:${notebookType}`;
+  getFleetObservable(map: MapComponent): Observable<ShipPosition[]> {
+    const key = `${map.playerName}:${map.notebookType}`;
     const fleetSubject = this.fleets.get(key)!;
     return fleetSubject.asObservable();
   }
 
-  placeShips(playerName: string, notebookType: string, positions: ShipPosition[]): void {
-    const key = `${playerName}:${notebookType}`;
-    const fleetSubject = this.fleets.get(key)!;
+  placeShips(playerNotebookKey: string, positions: ShipPosition[]): void {
+    const fleetSubject = this.fleets.get(playerNotebookKey)!;
     fleetSubject.next(positions);
   }
 }

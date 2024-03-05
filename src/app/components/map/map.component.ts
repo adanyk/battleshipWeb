@@ -23,7 +23,7 @@ export class MapComponent implements OnInit {
   ngOnInit(): void {
     this.gameService.registerMapComponent(this);
     this.subscription.add(
-      this.gameService.getFleetObservable(this.playerName, this.notebookType).subscribe((positions) => {
+      this.gameService.getFleetObservable(this).subscribe((positions) => {
         this.fleet = positions;
       })
     );

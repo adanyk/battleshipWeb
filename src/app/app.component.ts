@@ -21,8 +21,8 @@ export class AppComponent {
     this.gameStarted = true;
     const [shipsPositionsPlayer1, shipsPositionsPlayer2] = this.getShipsPositions();
 
-    this.gameService.placeShips('Player 1', 'my-notebook', shipsPositionsPlayer1);
-    this.gameService.placeShips('Player 2', 'my-notebook', shipsPositionsPlayer2);
+    this.gameService.placeShips('Player 1:my-notebook', shipsPositionsPlayer1);
+    this.gameService.placeShips('Player 2:my-notebook', shipsPositionsPlayer2);
   }
 
   getShipsPositions(): ShipPosition[][] {
