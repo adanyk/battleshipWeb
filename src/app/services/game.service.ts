@@ -16,18 +16,13 @@ export class GameService {
 
   getFleetObservable(playerName: string, notebookType: string): Observable<ShipPosition[]> {
     const key = `${playerName}:${notebookType}`;
-    const fleetSubject = this.fleets.get(key);
-    if (!fleetSubject) {
-      throw new Error(`Fleet not found for player: ${playerName}, notebookType: ${notebookType}`);
-    }
+    const fleetSubject = this.fleets.get(key)!;
     return fleetSubject.asObservable();
   }
 
   placeShips(playerName: string, notebookType: string, positions: ShipPosition[]): void {
     const key = `${playerName}:${notebookType}`;
-    const fleetSubject = this.fleets.get(key);
-    if (fleetSubject) {
-      fleetSubject.next(positions);
-    }
+    const fleetSubject = this.fleets.get(key)!;
+    fleetSubject.next(positions);
   }
 }
