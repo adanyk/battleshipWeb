@@ -8,6 +8,7 @@ import { Component, Input, HostBinding  } from '@angular/core';
   styleUrl: './ship.component.scss'
 })
 export class ShipComponent {
+  @Input() shipId: number = -1;
   @Input() @HostBinding('style.width') width: string = "";
   @Input() @HostBinding('style.height') height: string = "";
   @Input() @HostBinding('style.top') top: string = "";

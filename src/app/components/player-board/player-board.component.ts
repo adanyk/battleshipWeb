@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NotebookComponent } from '../notebook/notebook.component';
 
 @Component({
@@ -9,4 +9,5 @@ import { NotebookComponent } from '../notebook/notebook.component';
   styleUrl: './player-board.component.scss'
 })
 export class PlayerBoardComponent {
+  @Input() playerName: string = '';
 }
