@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MapContainerComponent } from '../map-container/map-container.component';
 
 @Component({
@@ -9,5 +9,6 @@ import { MapContainerComponent } from '../map-container/map-container.component'
   styleUrl: './notebook.component.scss'
 })
 export class NotebookComponent {
-
+  @Input() playerName: string = '';
+  @Input() notebookType: string = '';
 }

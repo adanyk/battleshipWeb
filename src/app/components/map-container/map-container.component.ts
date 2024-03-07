@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MapComponent } from '../map/map.component';
 import { CommonModule } from '@angular/common';
 
@@ -10,5 +10,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './map-container.component.scss'
 })
 export class MapContainerComponent {
-
+  @Input() playerName: string = '';
+  @Input() notebookType: string = '';
 }
