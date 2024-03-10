@@ -2,4 +2,10 @@
   <ng-container *ngFor="let ship of fleet; let i = index">
     <app-ship [shipId]="i" [width]="ship.width" [height]="ship.height" [top]="ship.top" [left]="ship.left"></app-ship>
   </ng-container>
+  <ng-container *ngFor="let row of shots; let i = index" class="row">
+    <app-shot-mark *ngFor="let shot of row; let j = index"
+      [result]="shot"
+      [style.top]="i * 10 + '%'"
+      [style.left]="j * 10 + '%'"></app-shot-mark>
+  </ng-container>  
 </div>
