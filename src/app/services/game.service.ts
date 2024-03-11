@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ShipPosition } from '../models/ship-position';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, delay } from 'rxjs';
 import { MapComponent } from '../components/map/map.component';
 import { Shot } from '../models/shot';
 
@@ -35,5 +35,30 @@ export class GameService {
   shoot(playerNotebookKey: string, shot: Shot) {
     const shotsSubject = this.shots.get(playerNotebookKey)!;
     shotsSubject.next(shot);
+  }
+
+
+  async simulateGameplay(gamePlay: Shot[]): Promise<void> {
+    let isPlayerOneTurn = true;
+
+    for (const shot of gamePlay) {
+      await this.delay(1000);
+      this.handleShot(isPlayerOneTurn, shot);      
+      isPlayerOneTurn = !isPlayerOneTurn;
+    }
+  }
+
+  private delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private handleShot(isPlayerOneTurn: boolean, shot: Shot): void {    
+    if (isPlayerOneTurn) {
+      this.shoot('Player 1:enemys-notebook', shot);
+      this.shoot('Player 2:my-notebook', shot);
+    } else {
+      this.shoot('Player 2:enemys-notebook', shot);
+      this.shoot('Player 1:my-notebook', shot);
+    }
   }
 }
