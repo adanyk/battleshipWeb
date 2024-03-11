@@ -31,7 +31,7 @@ export class AppComponent {
       this.gameService.placeShips('Player 2:my-notebook', shipsPositionsPlayer2);
     });
     
-    // Simulate an example shot after starting the game
+    // Simulate gameplay
     const gamePlay = this.getMockGameplay();
     this.gameService.simulateGameplay(gamePlay);
   }
