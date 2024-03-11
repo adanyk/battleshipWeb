@@ -5,6 +5,7 @@ import { ShipPosition } from './models/ship-position';
 import { GameService } from './services/game.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ShotResult } from './models/shot-result';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,10 @@ export class AppComponent {
       this.gameService.placeShips('Player 1:my-notebook', shipsPositionsPlayer1);
       this.gameService.placeShips('Player 2:my-notebook', shipsPositionsPlayer2);
     });
+    
+    // Simulate an example shot after starting the game
+    var shot = { coorX: 3, coorY: 3, result: ShotResult.Hit};
+    this.gameService.shoot('Player 1:my-notebook', shot);
   }
 
   getShipsPositions(): Observable<ShipPosition[][]> {

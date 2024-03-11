@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ShotMarkComponent } from '../shot-mark/shot-mark.component';
 import { ShotResult } from '../../models/shot-result';
+import { Shot } from '../../models/shot';
 
 @Component({
   selector: 'app-map',
@@ -26,21 +27,34 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.gameService.registerMapComponent(this);
+    this.subscribeToFleetUpdates();
+    this.initializeShots();
+    this.subscribeToShots();
+  }
+
+  private subscribeToFleetUpdates(): void {
     this.subscription.add(
       this.gameService.getFleetObservable(this).subscribe((positions) => {
         this.fleet = positions;
       })
     );
+  }
 
-    
-    this.shots = Array.from({ length: this.mapSize }, () =>
+  private initializeShots(): void {
+    this.shots = Array.from({ length: this.mapSize }, () => 
       Array(this.mapSize).fill(ShotResult.Unfired)
     );
   }
 
-  updateShotResult(x: number, y: number, result: ShotResult) {
-    if (x >= 0 && x < this.mapSize && y >= 0 && y < this.mapSize) {
-      this.shots[x][y] = result;
-    }
+  private subscribeToShots(): void {
+    this.subscription.add(
+      this.gameService.getShotsObservable(this).subscribe((shot) => {
+        this.updateShotResult(shot);
+      })
+    );
+  }
+
+  updateShotResult(shot: Shot) {
+    this.shots[shot.coorX][shot.coorY] = shot.result;
   }
 }
