@@ -6,6 +6,7 @@ import { GameService } from './services/game.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ShotResult } from './models/shot-result';
+import { Shot } from './models/shot';
 
 @Component({
   selector: 'app-root',
@@ -30,12 +31,20 @@ export class AppComponent {
       this.gameService.placeShips('Player 2:my-notebook', shipsPositionsPlayer2);
     });
     
-    // Simulate an example shot after starting the game
-    var shot = { coorX: 3, coorY: 3, result: ShotResult.Hit};
-    this.gameService.shoot('Player 1:my-notebook', shot);
+    // Simulate gameplay
+    const gamePlay = this.getMockGameplay();
+    this.gameService.simulateGameplay(gamePlay);
   }
 
   getShipsPositions(): Observable<ShipPosition[][]> {
     return this.http.get<ShipPosition[][]>(this.APIUrl);
+  }
+
+  getMockGameplay(): Shot[] {
+    return [
+      {coorX: 0, coorY: 0, result: ShotResult.Miss}, {coorX: 0, coorY: 1, result: ShotResult.Hit},
+      {coorX: 1, coorY: 1, result: ShotResult.Miss}, {coorX: 0, coorY: 2, result: ShotResult.Hit},
+      {coorX: 2, coorY: 2, result: ShotResult.Miss}, {coorX: 0, coorY: 3, result: ShotResult.Sunk},
+    ]
   }
 }

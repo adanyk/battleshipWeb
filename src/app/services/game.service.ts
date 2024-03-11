@@ -36,4 +36,29 @@ export class GameService {
     const shotsSubject = this.shots.get(playerNotebookKey)!;
     shotsSubject.next(shot);
   }
+
+
+  async simulateGameplay(gamePlay: Shot[]): Promise<void> {
+    let isPlayer1Turn = true;
+
+    for (const shot of gamePlay) {
+      await this.delay(1000);
+      this.handleShot(isPlayer1Turn, shot);      
+      isPlayer1Turn = !isPlayer1Turn;
+    }
+  }
+
+  private delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private handleShot(isPlayer1Turn: boolean, shot: Shot): void {    
+    if (isPlayer1Turn) {
+      this.shoot('Player 1:enemys-notebook', shot);
+      this.shoot('Player 2:my-notebook', shot);
+    } else {
+      this.shoot('Player 2:enemys-notebook', shot);
+      this.shoot('Player 1:my-notebook', shot);
+    }
+  }
 }
