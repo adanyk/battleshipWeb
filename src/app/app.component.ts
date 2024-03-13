@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GameAreaComponent } from './components/game-area/game-area.component';
-import { ShipPosition } from './models/ship-position';
 import { GameService } from './services/game.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ShotResult } from './models/shot-result';
-import { Shot } from './models/shot';
+import { GameSetup } from './models/game-setup';
 
 @Component({
   selector: 'app-root',
@@ -25,26 +23,19 @@ export class AppComponent {
 
   startGame() {
     this.gameStarted = true;
-    this.getShipsPositions().subscribe(shipsPositions => {
-      const [shipsPositionsPlayer1, shipsPositionsPlayer2] = shipsPositions;
+    this.getGameSetup().subscribe(gameSetup => {
+      const { ships, shots } = gameSetup;
+      
+      const shipsPositionsPlayer1 = ships[0];
+      const shipsPositionsPlayer2 = ships[1];
+  
       this.gameService.placeShips('Player 1:my-notebook', shipsPositionsPlayer1);
       this.gameService.placeShips('Player 2:my-notebook', shipsPositionsPlayer2);
+      this.gameService.simulateGameplay(shots);
     });
-    
-    // Simulate gameplay
-    const gamePlay = this.getMockGameplay();
-    this.gameService.simulateGameplay(gamePlay);
   }
 
-  getShipsPositions(): Observable<ShipPosition[][]> {
-    return this.http.get<ShipPosition[][]>(this.APIUrl);
-  }
-
-  getMockGameplay(): Shot[] {
-    return [
-      {coorX: 0, coorY: 0, result: ShotResult.Miss}, {coorX: 0, coorY: 1, result: ShotResult.Hit},
-      {coorX: 1, coorY: 1, result: ShotResult.Miss}, {coorX: 0, coorY: 2, result: ShotResult.Hit},
-      {coorX: 2, coorY: 2, result: ShotResult.Miss}, {coorX: 0, coorY: 3, result: ShotResult.Sunk},
-    ]
+  getGameSetup(): Observable<GameSetup> {
+    return this.http.get<GameSetup>(this.APIUrl);
   }
 }
