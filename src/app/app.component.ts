@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GameAreaComponent } from './components/game-area/game-area.component';
-import { ShipPosition } from './models/ship-position';
 import { GameService } from './services/game.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ShotResult } from './models/shot-result';
-import { Shot } from './models/shot';
 import { GameSetup } from './models/game-setup';
 
 @Component({
