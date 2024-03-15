@@ -1,9 +1,9 @@
 # Battleship Web
 This project is the frontend for a Battleship game simulator, built using Angular. It allows users to simulate gameplay between two players based on the classic Battleship board game rules.
 
-If you want to check for yourself, I would advise to get the [backend](https://github.com/adanyk/battleshipApi) first, and then come back here.
+If you want to check for yourself, I would advise to get the [backend](https://github.com/adanyk/battleshipApi) first.
 
-## Getting Started
+## Getting Started step-by-step
 To run this project locally, ensure that you have [Node.js](https://nodejs.org/) and [Angular CLI](https://cli.angular.io/) installed, then follow the steps:
 1. Clone the repository:
 ```
