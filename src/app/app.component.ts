@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GameAreaComponent } from './components/game-area/game-area.component';
-import { ShipPosition } from './models/ship-position';
 import { GameService } from './services/game.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { GameSetup } from './models/game-setup';
 
 @Component({
   selector: 'app-root',
@@ -23,14 +23,19 @@ export class AppComponent {
 
   startGame() {
     this.gameStarted = true;
-    this.getShipsPositions().subscribe(shipsPositions => {
-      const [shipsPositionsPlayer1, shipsPositionsPlayer2] = shipsPositions;
+    this.getGameSetup().subscribe(gameSetup => {
+      const { ships, shots } = gameSetup;
+      
+      const shipsPositionsPlayer1 = ships[0];
+      const shipsPositionsPlayer2 = ships[1];
+  
       this.gameService.placeShips('Player 1:my-notebook', shipsPositionsPlayer1);
       this.gameService.placeShips('Player 2:my-notebook', shipsPositionsPlayer2);
+      this.gameService.simulateGameplay(shots);
     });
   }
 
-  getShipsPositions(): Observable<ShipPosition[][]> {
-    return this.http.get<ShipPosition[][]>(this.APIUrl);
+  getGameSetup(): Observable<GameSetup> {
+    return this.http.get<GameSetup>(this.APIUrl);
   }
 }
